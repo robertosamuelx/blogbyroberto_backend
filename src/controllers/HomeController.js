@@ -19,8 +19,8 @@ module.exports = {
 
     async list(req, res) {
         const { page = 1 } = req.query;
-        const result = await Post.find().sort('postedAt').skip((page - 1) * 5).limit(5);
-        const count = await Post.count();
+        const result = await Post.find().sort({postedAt: 'desc',test: 1}).skip((page - 1) * 5).limit(5);
+        const count = await Post.countDocuments();
         res.setHeader('total',count);
         res.setHeader('page',page);
         return res.status(200).json(result);
