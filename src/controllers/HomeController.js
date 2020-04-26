@@ -6,9 +6,11 @@ const token = jwt.sign(String(credencial),'shhhhh');
 module.exports = {
     async create(req, res) {
         if(token == String(req.headers.authorization)){
-            const post = await Post.create(req.body);
-            const now = Date.now();
+            const now = Date.now() - (1000*60*180);
+            const json = {...req.body,postedAt:now};
+            const post = await Post.create(json);
             console.log(`${now} -'a new post ${post.id}`);
+            console.log(post);
             return res.status(201).json({id: post._id});
         }
 

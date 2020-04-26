@@ -4,10 +4,7 @@ const PostSchema = new mongoose.Schema({
     title: String,
     text: String,
     howManyLiked: Number,
-    postedAt: {
-        type: Date,
-        default: Date.now
-    }
+    postedAt: Date
 });
 
 module.exports = mongoose.model("Post",PostSchema);
