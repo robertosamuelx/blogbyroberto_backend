@@ -9,7 +9,7 @@ module.exports = {
             const post = await Post.create(req.body);
             const now = Date.now();
             console.log(`${now} -'a new post ${post.id}`);
-            return res.status(201).json(post);
+            return res.status(201).json({id: post._id});
         }
 
         else {
@@ -46,11 +46,23 @@ module.exports = {
             const now = Date.now();
             if(response != null){
                 console.log(`${now} - the post ${id} has been deleted`);
-                return res.status(200).json(response);
+                return res.status(200).send();
             }
             else {
                 return res.status(404).json({message:`There isn't post ${id}`});
             }
+        }
+        else {
+            return res.status(403).json({response:'Login failed'});
+        }
+    },
+
+    async deleteAll(req, res){
+        if(token == String(req.headers.authorization)){
+           await Post.deleteMany({});
+           const now = Date.now();
+           console.log(`${now} - all the posts has been deleted`);
+           return res.status(200).send();
         }
         else {
             return res.status(403).json({response:'Login failed'});

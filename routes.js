@@ -8,5 +8,6 @@ routes.put('/create', HomeController.create);
 routes.post('/update', HomeController.update);
 routes.delete('/delete', HomeController.delete);
 routes.post('/login',LoginController.login);
+routes.delete('/deleteAll', HomeController.deleteAll);
 
 module.exports = routes;
