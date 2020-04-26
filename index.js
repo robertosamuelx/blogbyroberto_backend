@@ -16,7 +16,10 @@ mongoose.connection.once('open', () => {
 });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    allowedHeaders: '*',
+    exposedHeaders: '*'
+}));
 
 app.use(routes);
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3333);
