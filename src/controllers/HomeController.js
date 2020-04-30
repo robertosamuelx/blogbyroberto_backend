@@ -5,6 +5,7 @@ const token = jwt.sign(String(credencial),'shhhhh');
 
 module.exports = {
     async create(req, res) {
+        console.log(String(req.headers.authorization));
         if(token == String(req.headers.authorization)){
             const now = Date.now() - (1000*60*180);
             const json = {...req.body,postedAt:now};
@@ -55,6 +56,7 @@ module.exports = {
             }
         }
         else {
+            console.log(String(req.headers));
             return res.status(403).json({response:'Login failed'});
         }
     },

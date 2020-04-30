@@ -4,10 +4,10 @@ const LoginController = require('./src/controllers/LoginController');
 const routes = express.Router();
 
 routes.get('/', HomeController.list);
-routes.put('/create', HomeController.create);
+routes.post('/create', HomeController.create);
 routes.post('/update', HomeController.update);
-routes.delete('/delete', HomeController.delete);
+routes.post('/delete', HomeController.delete);
 routes.post('/login',LoginController.login);
-routes.delete('/deleteAll', HomeController.deleteAll);
+routes.post('/deleteAll', HomeController.deleteAll);
 
 module.exports = routes;

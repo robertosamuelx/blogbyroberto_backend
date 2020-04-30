@@ -17,8 +17,9 @@ mongoose.connection.once('open', () => {
 
 app.use(express.json());
 app.use(cors({
+    exposedHeaders: '*',
     allowedHeaders: '*',
-    exposedHeaders: '*'
+    origin: '*'
 }));
 
 app.use(routes);
