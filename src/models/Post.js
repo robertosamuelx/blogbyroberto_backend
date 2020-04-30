@@ -4,6 +4,7 @@ const PostSchema = new mongoose.Schema({
     title: String,
     text: String,
     howManyLiked: Number,
+    isVideo: Boolean,
     postedAt: Date
 });
 

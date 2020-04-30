@@ -15,12 +15,15 @@ mongoose.connection.once('open', () => {
     console.log('we are connected');
 });
 
-app.use(express.json());
 app.use(cors({
-    exposedHeaders: '*',
     allowedHeaders: '*',
-    origin: '*'
+    methods: '*',
+    exposedHeaders: '*'
 }));
+
+app.options('/delete',cors());
+
+app.use(express.json());
 
 app.use(routes);
 app.listen(process.env.PORT || 3333);

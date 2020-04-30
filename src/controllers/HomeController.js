@@ -44,7 +44,7 @@ module.exports = {
 
     async delete(req, res){
         if(token == String(req.headers.authorization)){
-            const {id} = req.body;
+            const {id} = req.params;
             const response = await Post.findByIdAndRemove(id);
             const now = Date.now();
             if(response != null){
