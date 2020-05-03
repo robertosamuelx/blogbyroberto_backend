@@ -10,7 +10,8 @@ module.exports = {
         if(token == String(req.headers.authorization)){
             const now = Date.now() - (1000*60*180);
             let body = req.body;
-            body.text = Utils.changeLink(body.text);
+            if(body.isVideo)
+                body.text = Utils.changeLink(body.text);
             const json = {...body,postedAt:now};
             const post = await Post.create(json);
             console.log(`${now} -'a new post ${post.id}`);
