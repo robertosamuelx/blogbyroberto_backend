@@ -1,4 +1,4 @@
-# BackEnd #
+# BlogByRoberto #
 ---
 **Objetivo:**
 - Desenvolver o back end do blog para o professor Roberto Maia
@@ -12,6 +12,7 @@
 - Express v4.17.1
 - Jsonwebtoken v8.5.1
 - Mongoose v5.9.9
+- Nodemailer v6.4.6
 
 **Dependencias de Desenvolvimento:**
 - Nodemon v2.0.3
@@ -20,7 +21,7 @@
 - [Heroku](https://www.heroku.com/)
 
 **Como usar:**
-- [Para clonar o projeto clique aqui](https://github.com/robertosamuelx/blogbyroberto_backend.git)
+- git clone https://github.com/robertosamuelx/blogbyroberto_backend.git
 - Yarn i
 - Yarn start
 (O Yarn pode ser substituído por outro package manager, como NPM)
