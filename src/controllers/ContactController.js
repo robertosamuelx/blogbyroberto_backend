@@ -27,13 +27,13 @@ module.exports = {
             if(error){
                 response = `Ops! Houve uma falha no envio.\tPor favor ${name} tente novamente mais tarde.`;
                 status = 400;
-                return res.status(status).json({message:response,detail:error});
+                return res.status(status).json({message:response});
             }
             
             else {
                response = `Feito! Fique atento a sua caixa de e-mails ${name}\tpois em breve retornarei o contato.`;
                status = 200;
-               return res.status(status).json({message:response,detail:info});
+               return res.status(status).json({message:response});
             }
         });
     }
