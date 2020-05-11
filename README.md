@@ -3,8 +3,9 @@
 **Objetivo:**
 - Desenvolver o back end do blog para o professor Roberto Maia
 
-**Tecnologias envolvidas:**
-- Nodejs v12.16.1
+**Requisitos:**
+- Nodejs v12.16 ou superior
+- Yarn v1.22 ou superior
 
 **Dependências:**
 - Cors v2.8.5
@@ -22,8 +23,9 @@
 
 **Como usar:**
 - git clone https://github.com/robertosamuelx/blogbyroberto_backend.git
-- Yarn i
-- Yarn start
-(O Yarn pode ser substituído por outro package manager, como NPM)
-
+- yarn i
+- yarn start
+---
+###### O yarn pode ser substituído por outro package manager, como NPM) ######
+---
 *God be praised*
