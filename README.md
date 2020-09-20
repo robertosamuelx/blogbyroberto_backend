@@ -26,6 +26,6 @@
 - yarn i
 - yarn start
 ---
-###### O yarn pode ser substituído por outro package manager, como NPM) ######
+###### O yarn pode ser substituído por outro package manager, como NPM ######
 ---
 *God be praised*

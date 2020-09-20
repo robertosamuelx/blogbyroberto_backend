@@ -5,7 +5,9 @@ const PostSchema = new mongoose.Schema({
     text: String,
     howManyLiked: Number,
     isVideo: Boolean,
-    postedAt: Date
+    postedAt: Date,
+    awsKey: String,
+    url: String
 });
 
 module.exports = mongoose.model("Post",PostSchema);

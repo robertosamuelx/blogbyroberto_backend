@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const credencial = {login: process.env.LOGIN_USER,password: process.env.PASSWORD_USER};
 const token = jwt.sign(String(credencial),'shhhhh');
 const Utils = require('../resources/Utils');
+const aws = require('aws-sdk');
+const s3 = new aws.S3();
 
 module.exports = {
     async create(req, res) {
@@ -12,7 +14,9 @@ module.exports = {
             let body = req.body;
             if(body.isVideo)
                 body.text = Utils.changeLink(body.text);
-            const json = {...body,postedAt:now};
+            const awsKey = req.file['key'];
+            const url = req.file['location'];
+            const json = {...body,postedAt:now,awsKey,url};
             const post = await Post.create(json);
             console.log(`${now} -'a new post ${post.id}`);
             console.log(post);
@@ -49,9 +53,14 @@ module.exports = {
     async delete(req, res){
         if(token == String(req.headers.authorization)){
             const {id} = req.params;
-            const response = await Post.findByIdAndRemove(id);
+            const post = await Post.findById(id);
+            await s3.deleteObject({
+                Bucket: String(process.env.AWS_S3_BUCKET),
+                Key: post.awsKey
+            }).promise();
             const now = Date.now();
-            if(response != null){
+            await post.deleteOne();
+            if(post != null){
                 console.log(`${now} - the post ${id} has been deleted`);
                 return res.status(200).send();
             }
