@@ -9,14 +9,21 @@ const s3 = new aws.S3();
 module.exports = {
     async create(req, res) {
         console.log(String(req.headers.authorization));
+        let json = {};
         if(token == String(req.headers.authorization)){
             const now = Date.now() - (1000*60*180);
             let body = req.body;
-            if(body.isVideo)
+            if(body.isVideo){
                 body.text = Utils.changeLink(body.text);
-            const awsKey = req.file['key'];
-            const url = req.file['location'];
-            const json = {...body,postedAt:now,awsKey,url};
+            }
+
+            json = {...body,postedAt:now};
+            
+            if(req.file){
+                const awsKey = req.file['key'];
+                const url = req.file['location'];
+                json = {...awsKey,url}
+            }
             const post = await Post.create(json);
             console.log(`${now} -'a new post ${post.id}`);
             console.log(post);
