@@ -61,10 +61,12 @@ module.exports = {
         if(token == String(req.headers.authorization)){
             const {id} = req.params;
             const post = await Post.findById(id);
-            await s3.deleteObject({
-                Bucket: String(process.env.AWS_S3_BUCKET),
-                Key: post.awsKey
-            }).promise();
+            if(post.awsKey){
+                await s3.deleteObject({
+                    Bucket: String(process.env.AWS_S3_BUCKET),
+                    Key: post.awsKey
+                }).promise();
+            }
             const now = Date.now();
             await post.deleteOne();
             if(post != null){
