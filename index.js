@@ -19,7 +19,8 @@ mongoose.connection.once('open', () => {
 app.use(cors({
     allowedHeaders: '*',
     methods: '*',
-    exposedHeaders: '*'
+    exposedHeaders: '*',
+    origin: '*'
 }));
 
 app.options('/delete',cors());
