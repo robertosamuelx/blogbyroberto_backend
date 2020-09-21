@@ -22,7 +22,7 @@ module.exports = {
             if(req.file){
                 const awsKey = req.file['key'];
                 const url = req.file['location'];
-                json = {...awsKey,url}
+                json = {...json,awsKey,url}
             }
             const post = await Post.create(json);
             console.log(`${now} -'a new post ${post.id}`);
