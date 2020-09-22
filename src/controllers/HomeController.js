@@ -13,6 +13,7 @@ module.exports = {
         if(token == String(req.headers.authorization)){
             const now = Date.now() - (1000*60*180);
             let body = req.body;
+            console.log(body)
             if(body.isVideo){
                 body.text = Utils.changeLink(body.text);
             }
@@ -22,7 +23,9 @@ module.exports = {
             if(req.file){
                 const awsKey = req.file['key'];
                 const url = req.file['location'];
-                json = {...json,awsKey,url}
+                const size = req.file['size'];
+                const fileName = req.file['originalname'];
+                json = {...json,awsKey,url,size,fileName}
             }
             const post = await Post.create(json);
             console.log(`${now} -'a new post ${post.id}`);
