@@ -17,7 +17,7 @@ const s3 = multerS3({
 
 const options = {
     limits: {
-        fileSize: 10 * 1024 * 1024
+        fileSize: 100 * 1024 * 1024
     },
     storage: s3,
     fileFilter: (req, file, cb) => {
@@ -34,7 +34,7 @@ const options = {
         }
 
         else {
-            cb(new Error('O arquivo está em um formato inválido!'))
+            cb(new Error('O arquivo está em um formato inválido!').message)
         }
     }
 }
